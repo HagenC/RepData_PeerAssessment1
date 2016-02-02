@@ -1,12 +1,12 @@
----
-title: "Assignment: Course Project 1, Christian Hagen"
-output: html_document
----
+
+#Assignment: Course Project 1, Christian Hagen
+
+
 ```{r}
 library(lattice)
 ```
 
-Downloads the data from https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip
+##Loading data
 
 ```{r}
 if(!file.exists('activity.csv')){
@@ -16,7 +16,7 @@ if(!file.exists('activity.csv')){
 Activity <- read.csv("activity.csv")
 ```
 
-#What is mean total number of steps taken per day?
+##What is mean total number of steps taken per day?
 For this part of the assignment, you can ignore the missing values in the dataset.
 
 1.Calculate the total number of steps taken per day
@@ -43,7 +43,7 @@ Median
 legend("topright", legend=c("mean=10766" , "median=10765"))
 ```
 
-#What is the average daily activity pattern?
+##What is the average daily activity pattern?
 
 1.Make a time series plot (i.e. type = #l#) of the 5-minute interval (x-axis) and the average number of steps taken, 
 averaged across all days (y-axis)
@@ -60,7 +60,7 @@ MaxInterval <- MeanstepsPerIntervalDay[which.max(MeanstepsPerIntervalDay$steps) 
 MaxInterval               
 ```
 
-#Imputing missing values
+##Imputing missing values
 Note that there are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias
 into some calculations or summaries of the data.
 
@@ -115,7 +115,6 @@ See the README file in the GitHub repository to see an example of what this plot
 
 ```{r}
 MeanStepsWeek <- aggregate(steps ~ interval + daytype, ActivityImputedDaytype, mean)
-
 xyplot(steps~interval|daytype, MeanStepsWeek, layout=c(1,2), type="l", ylab= "Number of steps", xlab= "Interval")
 ```
 
